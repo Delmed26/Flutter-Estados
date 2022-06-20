@@ -1,9 +1,7 @@
+import 'package:estados/bloc/usuario/usuario_cubit.dart';
 import 'package:estados/models/usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:estados/bloc/usuario/usuario_cubit.dart';
-
 
 class Pagina2Page extends StatelessWidget {
 
@@ -25,17 +23,17 @@ class Pagina2Page extends StatelessWidget {
               child: Text('Establecer Usuario', style: TextStyle( color: Colors.white ) ),
               color: Colors.blue,
               onPressed: () {
-                
-                final newUser = new Usuario(
-                  nombre: 'Fernando Herrera',
-                  edad: 34,
+                final user = Usuario(
+                  nombre: 'Fernando Delgadillo',
+                  edad: 22,
                   profesiones: [
-                    'FullStack Developer',
-                    'Videojugador Veterano'
+                    'Software Engineer',
+                    'Android Developer',
+                    'Flutter Developer'
                   ]
                 );
+                usuarioCubit.selectUser(user);
 
-                usuarioCubit.seleccionarUsuario(newUser);
               }
             ),
 
@@ -43,7 +41,7 @@ class Pagina2Page extends StatelessWidget {
               child: Text('Cambiar Edad', style: TextStyle( color: Colors.white ) ),
               color: Colors.blue,
               onPressed: () {
-                usuarioCubit.cambiarEdad(30);
+                usuarioCubit.changeEdad(30);
               }
             ),
 
@@ -51,13 +49,13 @@ class Pagina2Page extends StatelessWidget {
               child: Text('Añadir Profesion', style: TextStyle( color: Colors.white ) ),
               color: Colors.blue,
               onPressed: () {
-                usuarioCubit.agregarProfesion();
+                usuarioCubit.addProfession("iOS Developer");
               }
             ),
 
           ],
         )
-     ),
-   );
+      ),
+    );
   }
 }

@@ -1,45 +1,38 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:estados/models/usuario.dart';
 
 part 'usuario_state.dart';
 
 class UsuarioCubit extends Cubit<UsuarioState> {
-  
-  UsuarioCubit() : super( UsuarioInitial() );
-  
-  void seleccionarUsuario( Usuario user ) {
-    emit( UsuarioActivo(user) );
+  UsuarioCubit() : super(UsuarioInitial());
+
+  void selectUser (Usuario user) {
+    emit(UsuarioActivo(user));
   }
 
-  void cambiarEdad( int edad ) {
+  void changeEdad (int edad) {
 
     final currentState = state;
-    if ( currentState is UsuarioActivo ) {
-      final newUser = currentState.usuario.copyWith( edad: 30 );
-      emit( UsuarioActivo( newUser ) );
+    if (currentState is UsuarioActivo) {
+      final user = currentState.usuario.copyWith(edad: 30);
+      emit(UsuarioActivo(user));
     }
 
   }
 
-  void agregarProfesion() {
-    
+
+  void addProfession (String profession) {
     final currentState = state;
-    if ( currentState is UsuarioActivo ) {
-      // currentState.usuario
-      final newProfesiones = [
-        ...currentState.usuario.profesiones,
-        'Profesión ${ currentState.usuario.profesiones.length + 1 }'
-      ];
-      final newUser = currentState.usuario.copyWith( profesiones: newProfesiones );
-      emit( UsuarioActivo(newUser) );
+    if (currentState is UsuarioActivo) {
+      final user = currentState.usuario.copyWith();
+      user.profesiones.add("iOS Developer");
+      emit(UsuarioActivo(user));
     }
   }
-
 
   void borrarUsuario() {
     emit(UsuarioInitial());
   }
-
 }

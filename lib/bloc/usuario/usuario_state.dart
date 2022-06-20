@@ -4,14 +4,21 @@ part of 'usuario_cubit.dart';
 abstract class UsuarioState {}
 
 class UsuarioInitial extends UsuarioState {
-  final existeUsuario = false;
+  final userExists = false;
+
+  // @override
+  // String toString() {
+  //   return 'UsuarioInicial: userExists = false';
+  // }
 }
 
+
 class UsuarioActivo extends UsuarioState {
-  final existeUsuario = true;
+  final userExists = true;
+
   final Usuario usuario;
 
   UsuarioActivo(this.usuario);
 
-}
 
+}
